@@ -154,6 +154,8 @@ socket.onmessage = event => {
                 gameContainer.style.top = "0";
                 // Song Container
                 songContainer.style.top = "100px";
+                // Show rank in gameplay
+                rank.style.opacity = "1";
 
                 // Sliderbreak
                 if (cache['sb'] != play.hits.sliderBreaks) {
@@ -223,6 +225,8 @@ socket.onmessage = event => {
                 gameContainer.style.top = "-100px";
                 //Song Container
                 songContainer.style.top = "0";
+                // Hide rank in menu
+                rank.style.opacity = "0";
 
                 if (cache['menu.pp100'] != menu.pp['100']) {
                     cache['menu.pp100'] = menu.pp["100"];
