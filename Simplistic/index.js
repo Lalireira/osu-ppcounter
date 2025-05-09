@@ -8,28 +8,70 @@ let songContainer = document.getElementById("song-container");
 let sliderBreak = document.getElementById("sb");
 let ppFC = document.getElementById("ppfc");
 let rank = document.getElementById("rank");
+
+// Initialize Odometer instances
+let pp = new Odometer({
+    el: document.getElementById('pp'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
+let h100 = new Odometer({
+    el: document.getElementById('h100'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
+let h50 = new Odometer({
+    el: document.getElementById('h50'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
+let h0 = new Odometer({
+    el: document.getElementById('h0'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
+let ss = new Odometer({
+    el: document.getElementById('ss'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
+let sb = new Odometer({
+    el: document.getElementById('sb'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
+let fc = new Odometer({
+    el: document.getElementById('ppfc'),
+    value: 0,
+    format: '(,ddd)',
+    theme: 'default'
+});
+
 // Functions
 function setRankStyle(text, color, shadow) {
     rank.innerHTML = text;
     rank.style.color = color;
     rank.style.textShadow = shadow;
 }
+
 socket.onopen = () => console.log("Successfully Connected");
 socket.onclose = event => {
     console.log("Socket Closed Connection: ", event);
     socket.send("Client Closed!");
 };
 socket.onerror = error => console.log("Socket Error: ", error);
-
-
-let pp = new CountUp('pp', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: " ", decimal: "." });
-let fc = new CountUp('ppfc', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: " ", decimal: "." });
-let h100 = new CountUp('h100', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: "", decimal: "." });
-let h50 = new CountUp('h50', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: "", decimal: "." });
-let h0 = new CountUp('h0', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: "", decimal: "." });
-let ss = new CountUp('ss', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: " ", decimal: "." });
-let sb = new CountUp('sb', 0, 0, 0, .5, { useEasing: true, useGrouping: true, separator: " ", decimal: "." });
-
 
 const cache = {};
 
@@ -39,10 +81,8 @@ socket.onmessage = event => {
         const menu = data.menu;
         const play = data.gameplay;
 
-
         if (cache['grade'] != data.gameplay.hits.grade.current) {
             cache['grade'] = data.gameplay.hits.grade.current;
-
 
             switch (cache['grade']) {
                 case 'XH':
@@ -96,12 +136,6 @@ socket.onmessage = event => {
             setRankStyle(cache['grade-'], cache.color, cache.textShadow);
         };
 
-
-
-
-
-
-
         //Game State Check
         switch (menu.state) {
             case 7:
@@ -121,7 +155,6 @@ socket.onmessage = event => {
                 // Song Container
                 songContainer.style.top = "100px";
 
-
                 // Sliderbreak
                 if (cache['sb'] != play.hits.sliderBreaks) {
                     cache['sb'] = play.hits.sliderBreaks;
@@ -136,7 +169,6 @@ socket.onmessage = event => {
                     };
                 };
 
-
                 // PP FC
                 if (cache['ppfc'] != play.pp.fc) {
                     cache['ppfc'] = play.pp.fc;
@@ -150,7 +182,6 @@ socket.onmessage = event => {
                         ppFC.style.opacity = "0";
                     };
                 };
-
 
                 // Set Only in Gameplay
                 if (cache['play.pp.current'] != play.pp.current) {

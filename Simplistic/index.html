@@ -8,7 +8,8 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Simplistic</title>
-   <link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+   <link rel="stylesheet" type="text/css" href="css/odometr.css">
 </head>
 
 <body>
@@ -26,19 +27,19 @@
             <!-- Gameplay -->
             <div id="game-container">
                <div class="pp">
-                  <span id="pp">999</span><span class="accent">pp</span>
+                  <span id="pp" class="odometer">999</span><span class="accent">pp</span>
                </div>
                <div class="hits">
                   <div class="h100">
-                     <span id="h100">123</span>
+                     <span id="h100" class="odometer">123</span>
                      <hr>
                   </div>
                   <div class="h50">
-                     <span id="h50">123</span>
+                     <span id="h50" class="odometer">123</span>
                      <hr>
                   </div>
                   <div class="h0">
-                     <span id="h0">123</span>
+                     <span id="h0" class="odometer">123</span>
                      <hr>
                   </div>
                </div>
@@ -46,14 +47,14 @@
             <!-- Song Selection -->
             <div id="song-container">
                <div class="ss">
-                  <span id="ss">234</span><span class="accent">pp</span>
+                  <span id="ss" class="odometer">234</span><span class="accent">pp</span>
                </div>
             </div>
          </div>
       </div>
    </div>
    <script src="deps/reconnecting-websocket.min.js"></script>
-   <script src="deps/countUp.js"></script>
+   <script src="deps/odometr.js"></script>
    <script src="index.js"></script>
 </body>
 
